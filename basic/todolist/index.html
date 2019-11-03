@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div>
+      <input 
+        type="text" 
+        v-on:keyup.enter="handleKeyup"
+        v-model="inputValue"
+      >
+    </div>
+    <ul>
+      <li v-for="(item,index) in list">
+        {{item}} <button v-on:click="handleClick(index)">x</button>
+      </li>
+    </ul>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
