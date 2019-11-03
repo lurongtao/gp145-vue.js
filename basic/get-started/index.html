@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue get started</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <div>{{computer}}</div>
+    <ul>
+      <li v-for="fruit in fruits">
+        {{fruit}}
+      </li>
+    </ul> -->
+    <ul>
+      <li v-for="p in products">
+        <input type="number" v-bind:disabled="p.quantity == p.inventry" min="0" v-model="p.quantity" /> {{p.name}}: {{p.price}} X {{p.quantity}}
+        <span v-if="p.quantity == p.inventry">售罄了</span>
+      </li>
+    </ul>
+    <div>
+      总价：{{sum}}
+    </div>
+    <!-- <div>
+      <input type="text" v-model="inputValue"> {{inputValue}}
+    </div> -->
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

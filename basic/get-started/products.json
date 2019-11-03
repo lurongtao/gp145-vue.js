@@ -1,0 +1,20 @@
+[
+  {
+    "name": "iphone XS",
+    "inventry": 10,
+    "price": 6000,
+    "quantity": 0
+  },
+  {
+    "name": "iphone 6",
+    "inventry": 4,
+    "price": 3000,
+    "quantity": 0
+  },
+  {
+    "name": "iphone 11",
+    "inventry": 5,
+    "price": 4999,
+    "quantity": 0
+  }
+]

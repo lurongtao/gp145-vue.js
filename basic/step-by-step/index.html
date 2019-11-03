@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>step-by-step</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div>
+      {{title}}
+    </div>
+    <div>
+      {{body}}
+    </div>
+    <ul>
+      <li v-if="index % 2 === 0" v-for="(value, index) in list">
+        <span>
+          {{value}}
+        </span>
+      </li>
+    </ul>
+    <div>
+      <button v-on:click="handleClick">
+        click
+      </button>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
