@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>form</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <input type="radio" v-model="textValue" value="aaa">
+    {{textValue}} -->
+    <!-- <input type="checkbox" value="学习" v-model="hobbits" />
+    <input type="checkbox" value="劳动" v-model="hobbits" />
+    <input type="checkbox" value="睡觉" v-model="hobbits" />
+    {{hobbits}} -->
+    <!-- <input type="radio" value="male" v-model="gender" name="gender">
+    <input type="radio" value="female" v-model="gender" name="gender">
+    {{gender}} -->
+
+    <!-- <select multiple v-model="selectedCity">
+      <option>上海</option>
+      <option>北京</option>
+      <option>深圳</option>
+      <option>千锋</option>
+    </select>
+    {{selectedCity}} -->
+
+    <!-- <input
+      type="checkbox"
+      v-model="toggle"
+      true-value="真"
+      false-value="假"
+    >
+    {{toggle}} -->
+
+    <input v-model.lazy="textValue" type="text" />
+    {{textValue}}
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

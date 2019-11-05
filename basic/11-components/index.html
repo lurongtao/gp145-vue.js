@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>component</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <counter>
+      <div>hello</div>
+      <div slot="w">world</div>
+    </counter>
+    <ul>
+      <li 
+        v-for="(value, key) in comps"
+        @click="handleClick(value)"
+      >
+        {{key}}
+      </li>
+    </ul>
+    <component :is="currentComp"></component>
+
+    <table border="1">
+      <tr is="my-tr"></tr>
+      <tr is="my-tr"></tr>
+      <tr is="my-tr"></tr>
+    </table>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>

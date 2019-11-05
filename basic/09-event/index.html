@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div>{{title}}</div>
+    <div @click="handleDivClick" :style="{width: '100px', height: '100px', background: 'red'}">
+      <button @click.self="handleClick(3, $event)">click</button>
+      <a href="#" @click.prevent="()=>{title='aaa'}">anchor click</a>
+      <input v-model="inputValue" @keyup.alt.67="clear">
+
+      <button @click.stop.exact.alt="onClick">A</button>
+    </div>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
