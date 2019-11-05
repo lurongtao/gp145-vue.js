@@ -1,5 +1,8 @@
+import MyComponent from './MyComponent.js'
+
 let app = new Vue({
   el: '#root',
+
   data: {
     title: 'hello',
     currentIndex: 0,
@@ -11,9 +14,14 @@ let app = new Vue({
       'good'
     ]
   },
+
   methods: {
     handleClick(index) {
       this.currentIndex = index
     }
   },
+
+  components: {
+    'my-component': MyComponent
+  }
 })

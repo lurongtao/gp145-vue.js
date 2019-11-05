@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-if</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <ul>
+      <li>item 1</li>
+      <template v-if="isShow">
+        <li>item 2</li>
+        <li>item 3</li>
+      </template>
+    </ul>
+    <ul v-show="isShow">
+      <li>item4</li>
+    </ul> -->
+    <!-- <ul v-if="isShow">
+      <li v-for="l in list">
+        {{l}}
+      </li>
+    </ul> -->
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input key="a" placeholder="Enter your username">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input key="b" placeholder="Enter your email address">
+    </template>
+    <button @click="handleClick">click</button>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

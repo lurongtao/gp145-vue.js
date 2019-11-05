@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-for</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <template v-for="item in 5">
+      <ul>
+        <li v-for="value, index of list2">
+          <!-- <div v-for="v in value">
+            {{v}}
+          </div> -->
+          {{value}}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(value,key,index) in courses">
+          {{key}} - {{value}} - {{index}}
+        </li>
+      </ul>
+    </template>
+    <ul>
+      <li v-for="i in 10">
+        {{i}}
+      </li>
+    </ul>
+    <my-component
+      v-for="i in 10"
+      :key="i"
+      :index="i"
+    ></my-component>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
