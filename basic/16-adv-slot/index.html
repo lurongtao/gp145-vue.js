@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>adv-slot</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <child :todo="todo">
+      {{message}}
+      <div>content</div>
+      <template v-slot:header>
+        <div>article</div>
+      </template>
+
+      <template v-slot:default="{message, title}">
+        <div>--{{message}}--</div>
+        <div>--{{message}}--</div>
+        <div>--{{title}}--</div>
+      </template>
+
+      <template #slot1="msg">
+        <div>--head--</div>
+        <div>--{{msg.title}}--</div>
+      </template>
+
+      <div slot="slot2" slot-scope="msg">
+        <div>slotslot</div>
+        <div>--{{msg.title}}--</div>
+      </div>
+
+      <template v-slot:[slotname]>
+        <div>slotslotslotslot</div>
+      </template>
+
+
+      <template v-slot:todo="{ todo }">
+        <span v-if="todo.finished">✓</span>
+        {{ todo.text }}
+      </template>
+    </child> -->
+  
+    <todo-list :todo="todo">
+      <template #default="{todo}">
+        <div><span v-if="todo.finished">√</span> {{todo.text}} </div>
+      </template>
+    </todo-list>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

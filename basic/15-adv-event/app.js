@@ -9,7 +9,7 @@ var app = new Vue({
       aaa: 0,
       bbb: 1
     },
-    inputValue: 'aaa'
+    inputValue: 'aaa',
   },
   components: {
     child
