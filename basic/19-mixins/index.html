@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mixins</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+  <link rel="stylesheet" href="./app.css">
 </head>
 <body>
   <div id="root">
-    <!-- {{title}} - {{message}} -->
-    {{newTitle}}
-    <detail></detail>
+    <div id="wrap" v-cloak>
+      <!-- {{title}} - {{message}} -->
+      {{newTitle}}
+      <detail></detail>
+      <span v-pre>
+        {{newTitle}}
+      </span>
+      <p v-cloak>
+        hello
+      </p>
+    </div>
   </div>
   <script type="module" src="./app.js"></script>
 </body>
