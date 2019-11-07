@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>adv-dy-compoment</title>
+  <title>adv-gap</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <script type="text/x-template" id="hello-world-template">
+    <p>Hello hello hello</p>
+  </script>
   <div id="root">
     <ul>
       <li @click="handleNavClick('list')">列表</li>
       <li @click="handleNavClick('detail')">详情</li>
     </ul>
-    <keep-alive>
-      <component :is="currentComp"></component>
-    </keep-alive>
+    <!-- <keep-alive> -->
+      <component :is="currentComp" :currentcomp="currentComp"></component>
+    <!-- </keep-alive> -->
   </div>
   <script type="module" src="./app.js"></script>
 </body>
