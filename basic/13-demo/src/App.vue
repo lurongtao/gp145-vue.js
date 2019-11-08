@@ -2,6 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Jsx></Jsx>
   </div>
 </template>
 
@@ -15,6 +16,8 @@ import BaseComp3 from './components/BaseComp3.vue'
 
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+
+import { Jsx } from './Jsx'
 
 const requireComponent = require.context(
   // 其组件目录的相对路径
@@ -53,7 +56,8 @@ requireComponent.keys().forEach(fileName => {
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Jsx
   }
 }
 </script>
