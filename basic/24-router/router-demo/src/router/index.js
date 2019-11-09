@@ -3,9 +3,12 @@ import Router from 'vue-router'
 
 import Movie from '../components/Movie'
 import TV from '../components/TV'
+import TV2 from '../components/TV2'
+import TV3 from '../components/TV3'
 import MovieDetail from '../components/MovieDetail'
 import Detail from '../components/Detail'
 import Page404 from '../components/Page404'
+// import About from '../components/About'
 
 Vue.use(Router)
 
@@ -31,7 +34,11 @@ const routes = [
   },
   {
     path: '/tv',
-    component: TV
+    components: {
+      default: TV,
+      tv2: TV2,
+      tv3: TV3
+    }
   },
   {
     name: 'detail',
@@ -40,6 +47,15 @@ const routes = [
     },
     path: '/detail/:id',
     component: Detail
+  },
+  {
+    name: 'about',
+    component: () => import('../components/About'),
+    meta: 'aboutabout',
+    path: '/about',
+    beforeEnter: (to, from, next) => {
+      next()
+    },
   },
   {
     path: '/user-*',
@@ -51,5 +67,32 @@ const router = new Router({
   mode: 'history',
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (from.name === 'about') {
+//     if (confirm('你真的要离开吗？')) {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+
+//   if (to.name === 'about') {
+//     if (confirm('你真的要进来吗？')) {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// })
+
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach')
+  next()
+})
+
+// router.afterEach((to, from) => {
+//   // 善后工作
+// })
 
 export default router

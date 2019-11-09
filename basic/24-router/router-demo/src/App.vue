@@ -3,8 +3,11 @@
     <ul>
       <router-link active-class="active" tag="li" :to="{name: 'movie', query: {type: 1}}">电影</router-link>
       <router-link active-class="active" tag="li" to="/tv">电视剧</router-link>
+      <router-link active-class="active" tag="li" to="/about">关于我们</router-link>
     </ul>
     <router-view></router-view>
+    <router-view name="tv2"></router-view>
+    <router-view name="tv3"></router-view>
   </div>
 </template>
 
