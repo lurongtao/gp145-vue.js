@@ -19,19 +19,21 @@ export default {
     this.name = nm
   },
 
-  beforeRouteUpdate(to, from, next) {
-    let { id, nm } = to.params
-    this.id = id
-    this.name = nm
-  }
-
-  // watch: {
-  //   $route(to, from) {
-  //     let { id, nm } = to.params
-  //     this.id = id
-  //     this.name = nm
-  //   }
+  // beforeRouteUpdate(to, from, next) {
+  //   let { id, nm } = to.params
+  //   this.id = id
+  //   this.name = nm
+  //   next()
   // }
+
+  watch: {
+    $route(to, from) {
+      console.log(to.query.x)
+      let { id, nm } = to.params
+      this.id = id
+      this.name = nm
+    }
+  }
 }
 </script>
 

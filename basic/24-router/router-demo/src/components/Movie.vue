@@ -1,14 +1,13 @@
 <template>
   <div>
     <ul>
-      <router-link
-        tag="li"
-        :to="`/movie/detail/${movie.id}/${movie.nm}`"
+      <li
         v-for="movie in list"
         :key="movie.id"
+        @click="handleClick(movie.id, movie.nm)"
       >
         {{movie.nm}}
-      </router-link>
+      </li>
     </ul>
     <router-view></router-view>
   </div>
@@ -19,6 +18,14 @@ export default {
   data() {
     return {
       list: []
+    }
+  },
+
+  methods: {
+    handleClick(id, nm) {
+      if (this.$route.params.nm !== nm) {
+        this.$router.push({ name: 'moviedetail', params: {id, nm}, query: {x: 0} })
+      }
     }
   },
 
