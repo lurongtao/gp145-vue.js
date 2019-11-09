@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { INCREMENT } from './mutation-types'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -9,8 +11,22 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    increment(state) {
-      state.count++
+    [INCREMENT](state, data) {
+      state.count += data.payload
+    }
+  },
+
+  getters: {
+    doubleCount(state) {
+      return state.count * 2
+    },
+    tripleCount(state) {
+      return state.count * 3
+    },
+    addCount(state, getters) {
+      return (num) => {
+        return num + getters.doubleCount + getters.tripleCount
+      }
     }
   }
 })
