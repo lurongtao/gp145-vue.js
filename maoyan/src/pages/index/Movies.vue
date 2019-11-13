@@ -1,0 +1,97 @@
+<template>
+  <div class="movie-wrap">
+    <header>猫眼电影</header>
+    <nav>
+      <div>
+        <span>北京</span>
+        <i class="yo-ico">&#xf033;</i>
+      </div>
+      <div>
+        <ul>
+          <li class="active">正在热映</li>
+          <li>即将上映</li>
+        </ul>
+      </div>
+      <div>
+        <i class="yo-ico">&#xf067;</i>
+      </div>
+    </nav>
+    <MovieList></MovieList>
+  </div>
+</template>
+
+<script>
+import MovieList from 'components/movielist/MovieList'
+export default {
+  components: {
+    MovieList
+  }
+}
+</script>
+
+<style lang='stylus' scoped>
+@import '~assets/stylus/border.styl';
+
+.movie-wrap {
+  display: flex;
+  flex-direction: column;
+
+  header {
+    height: 0.44rem;
+    background: #e54847;
+    text-align: center;
+    line-height: 0.44rem;
+    font-size: 0.18rem;
+    color: #fff;
+  }
+
+  nav {
+    height: 0.44rem;
+    $border(0 0 1px 0);
+    display: flex;
+
+    >div:first-child {
+      flex: 80;
+      padding-left: 0.16rem;
+      font-size: 0.16rem;
+      line-height: 0.44rem;
+      display: flex;
+      align-items: center;
+      color: #666;
+    }
+
+    >div:nth-child(2) {
+      flex: 215;
+
+      ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        li {
+          flex: 1;
+          text-align: center;
+          line-height: 0.44rem;
+          color: #666;
+          font-weight: 700;
+
+          &.active {
+            border-bottom: solid 0.02rem #e54847;
+            margin: 0 0.05rem;
+            color: #e54847;
+          }
+        }
+      }
+    }
+
+    >div:last-child {
+      flex: 80;
+      padding-right: 0.16rem;
+      line-height: 0.44rem;
+      font-size: 0.18rem;
+      text-align: right;
+      color: #e54847;
+    }
+  }
+}
+</style>

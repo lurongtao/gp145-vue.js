@@ -1,7 +1,8 @@
 <template>
   <div class="index-wrap">
-    <header></header>
-    <main></main>
+    <main>
+      <router-view></router-view>
+    </main>
     <nav>
       <ul>
         <li class="active">
@@ -42,6 +43,11 @@ export default {
   header
     height .44rem
     background #e54847
+    text-align center
+    line-height .44rem
+    font-size .18rem
+    color #fff
+
   main
     flex 1
     background #fff
@@ -66,8 +72,8 @@ export default {
           &:first-child
             line-height 0
           svg
-            width .26rem
-            height .26rem
+            width .25rem
+            height .25rem
         &.active
           span
             color #e54847
