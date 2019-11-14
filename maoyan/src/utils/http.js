@@ -1,10 +1,12 @@
 import axios from 'axios'
 
 export const get = ({
-  url
+  url,
+  params
 }) => {
   return axios({
-    url
+    url,
+    params
   })
   .then((result) => {
     return result.data

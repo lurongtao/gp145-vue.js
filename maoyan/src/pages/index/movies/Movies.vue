@@ -1,29 +1,31 @@
 <template>
   <div class="movie-wrap">
     <header>猫眼电影</header>
-    <Ad></Ad>
-    <nav>
-      <div>
-        <span>北京</span>
-        <i class="yo-ico">&#xf033;</i>
-      </div>
-      <div>
-        <ul>
-          <router-link tag="li" to="/index/movies/intheaters" active-class="active">正在热映</router-link>
-          <router-link tag="li" :to="{path: '/index/movies/comingsoon'}" active-class="active">即将上映</router-link>
-        </ul>
-      </div>
-      <div>
-        <i class="yo-ico">&#xf067;</i>
-      </div>
-    </nav>
+      <Ad v-if="!$store.state.isSticky"></Ad>
+      <nav>
+        <div>
+          <span>北京</span>
+          <i class="yo-ico">&#xf033;</i>
+        </div>
+        <div>
+          <ul>
+            <router-link tag="li" to="/index/movies/intheaters" active-class="active">正在热映</router-link>
+            <router-link tag="li" :to="{path: '/index/movies/comingsoon'}" active-class="active">即将上映</router-link>
+          </ul>
+        </div>
+        <div>
+          <i class="yo-ico">&#xf067;</i>
+        </div>
+      </nav>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import MovieList from 'components/movielist/MovieList'
 import Ad from './Ad'
+
 export default {
   components: {
     MovieList,
