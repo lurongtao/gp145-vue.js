@@ -1,15 +1,7 @@
 <template>
   <MovieWrap>
     <MostExpected></MostExpected>
-    <MovieList></MovieList>
-    <!-- <div>
-      <div>
-        <p>日期</p>
-      </div>
-      <div>
-        <p>日期</p>
-      </div>
-    </div> -->
+    <MovieList type="comingsoon"></MovieList>
   </MovieWrap>
 </template>
 

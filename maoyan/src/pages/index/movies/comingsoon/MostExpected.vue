@@ -6,6 +6,7 @@
       <div>
         <div class="expected-item"
           v-for="movie in expectedList"
+          :key="movie.id"
         >
           <div class="poster default-img-bg">
             <img :src="movie.img | wh('340.460')"
@@ -35,19 +36,53 @@ export default {
     }
   },
 
-  async mounted() {
-    let result = await get({
+  beforeCreate() {
+    this.limit = 10,
+
+    // 用来记录上次ajax请求是否完成
+    this.isLoaded = true
+  },
+
+  async loadData(offset) {
+    return await get({
       url: '/ajax/mostExpected',
       params: {
         ci: 1,
-        limit: 10,
-        offset: 0,
+        limit: this.limit,
+        offset: offset * this.limit,
         token: ''
       }
     })
-    this.expectedList = result.coming
-    new BScroll('.most-expected-list', {
+  },
+
+  async mounted() {
+    let page = 0
+    let firstPageResult = await this.$options.loadData.call(this, page)
+
+    this.expectedList = firstPageResult.coming
+    let bScroll = new BScroll('.most-expected-list', {
       scrollX: true
+    })
+
+    bScroll.on('scrollEnd', async () => {
+      let { x, maxScrollX } = bScroll
+      if (x <= maxScrollX && this.isLoaded) {
+        // 第一次进来后，立刻阻止用户第二次在ajax请求还没有成功的时候，做第二次请求
+        this.isLoaded = false
+        page++
+        let nthPageResult = await this.$options.loadData.call(this, page)
+        if (nthPageResult.coming.length > 0) {
+          this.expectedList = [
+            ...this.expectedList,
+            ...nthPageResult.coming
+          ]
+          await this.$nextTick()
+          bScroll.refresh()
+          this.isLoaded = true
+        } else {
+          console.log('到头儿了')
+        }
+      }
     })
   }
 }

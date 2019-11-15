@@ -1,6 +1,6 @@
 <template>
   <MovieWrap>
-    <MovieList></MovieList>
+    <MovieList type="intheaters"></MovieList>
   </MovieWrap>
 </template>
 
