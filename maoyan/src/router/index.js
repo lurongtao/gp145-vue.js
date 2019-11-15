@@ -5,7 +5,7 @@ import Index from 'pages/index/Layout'
 
 import Movies from 'pages/index/movies/Movies'
 import Intheaters from 'pages/index/movies/Intheaters'
-import Comingsoon from 'pages/index/movies/Comingsoon'
+import Comingsoon from 'pages/index/movies/comingsoon/Comingsoon'
 
 import Theaters from 'pages/index/Theaters'
 import Profile from 'pages/index/Profile'

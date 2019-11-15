@@ -48,12 +48,6 @@ export default {
     }
   },
 
-  filters: {
-    wh(value, args) {
-      return value.replace('w.h', args)
-    }
-  },
-
   components: {
     Button
   }
