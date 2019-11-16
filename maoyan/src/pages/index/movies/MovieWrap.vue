@@ -2,7 +2,7 @@
   <section data-page=".movie" class="movie singleton page active">
     <div class="page-wrap">
       <div class="tab-block">
-        <div class="tab-content">
+        <div class="tab-content" :class="type">
           <div class="list-wrap">
             <slot></slot>
           </div>
@@ -14,14 +14,14 @@
 
 <script>
 export default {
-  
+  props: ['type']
 }
 </script>
 
 <style lang='stylus'>
 section
-  flex 1
-  position static !important
+  position absolute !important
+  height 100%
   .main-block
     padding-right .16rem
   .tab-content .list-wrap .item .content-wrapper

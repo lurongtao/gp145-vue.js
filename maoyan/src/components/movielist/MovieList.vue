@@ -94,7 +94,9 @@ export default {
 
     let movieIds = _.chunk(result.movieIds.slice(offset), 10)
 
-    let bScroll = new BScroll('.tab-content', {
+    // 由于动画播放的原因，不允许给两个的容器定义better-scroll
+    let scrollWrap = '.tab-content.' + this.type
+    let bScroll = new BScroll(scrollWrap, {
       pullUpLoad: true,
       click: true,
       probeType: 2

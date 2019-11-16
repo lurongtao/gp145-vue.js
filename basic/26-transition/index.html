@@ -6,12 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mixins</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./animation.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
   <div id="root">
-    <transition name="fade">
-      <div v-if="show">{{title}}</div>
+    <transition
+      enter-active-class="animated swing"
+      leave-active-class="animated tada"
+    >
+      <div v-show="show">{{title}}</div>
     </transition>
     <div>
       <button @click="handleClick">click</button>

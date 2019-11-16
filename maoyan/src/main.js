@@ -7,6 +7,7 @@ Vue.config.productionTip = false
 
 import 'assets/maoyan.css'
 import 'assets/reset.css'
+import 'assets/animation.css'
 import './filters/img'
 
 new Vue({

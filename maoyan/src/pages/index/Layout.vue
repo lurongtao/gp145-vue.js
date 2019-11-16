@@ -1,7 +1,12 @@
 <template>
   <div class="index-wrap">
     <main>
-      <router-view></router-view>
+      <transition
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+      >
+        <router-view></router-view>
+      </transition>
     </main>
     <van-tabbar v-model="active" active-color="#e54748" route>
       <van-tabbar-item

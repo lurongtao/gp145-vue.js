@@ -33,11 +33,13 @@ const routes = [
           {
             path: 'intheaters',
             name: 'intheaters',
+            meta: 1,
             component: Intheaters
           },
           {
             path: 'comingsoon',
             name: 'comingsoon',
+            meta: 2,
             component: Comingsoon
           }
         ]
@@ -65,7 +67,15 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return {
+      x: 0,
+      y: 100
+    }
+    // return false
+  }
 })
 
 export default router

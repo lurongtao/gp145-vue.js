@@ -1,5 +1,5 @@
 <template>
-  <MovieWrap>
+  <MovieWrap type="comingsoon">
     <MostExpected></MostExpected>
     <MovieList type="comingsoon"></MovieList>
   </MovieWrap>
