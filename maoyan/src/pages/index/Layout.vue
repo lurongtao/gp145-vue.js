@@ -6,7 +6,7 @@
     <van-tabbar v-model="active" active-color="#e54748" route>
       <van-tabbar-item
         replace
-        to="/index/movies/intheaters"
+        to="/index/movies"
       >
         <span>电影</span>
         <img

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="coming-list" v-if="type==='comingsoon'">
+    <div class="coming-list" v-if="type==='comingsoon' && tempList.length > 0">
       <div 
         v-for="(value,key) in comingsoonMap"
         :key="key"
       >
-        <p class="group-date">11月16日 周六</p>
+        <p class="group-date">{{key}}</p>
         <MovieItem
           v-for="(movie,index) in value"
           :key="movie.id"
@@ -14,7 +14,7 @@
         ></MovieItem>
       </div>
     </div>
-    <div v-else>
+    <div v-else-if="type==='intheaters' && intheatersList.length > 0">
       <MovieItem
         v-for="(movie,index) in intheatersList"
         :key="movie.id"
@@ -22,7 +22,7 @@
         :index="index"
       ></MovieItem>
     </div>
-    <!-- <van-loading v-else type="spinner" /> -->
+    <van-loading v-if="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)" type="spinner" />
   </div>
 </template>
 
@@ -41,21 +41,21 @@ export default {
   data() {
     return {
       intheatersList: [],
-      comingsoonMap: {}
+      comingsoonMap: {},
+      tempList: []
     }
-  },
-
-  beforeCreate() {
-    this.tempList = []
   },
 
   genData(result) {
     if (this.type === 'intheaters') {
-      console.log(result.coming)
-      this.intheatersList = [
-        ...this.intheatersList,
-        ...result.coming
-      ]
+      if (this.intheatersList.length === 0) {
+        this.intheatersList = result.movieList
+      } else {
+        this.intheatersList = [
+          ...this.intheatersList,
+          ...result.coming
+        ]
+      }
     } else {
       this.tempList = [
         ...this.tempList,
@@ -89,7 +89,6 @@ export default {
         limit: 10
       }
     })
-    console.log(result)
 
     this.$options.genData.call(this, result)
 
