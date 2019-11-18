@@ -39,12 +39,18 @@ export default {
     movie: {
       type: Object
     },
-    index: Number
+    index: Number,
+    bscroll: Object
   },
 
   methods: {
     handleClick() {
-      this.$router.push('/details')
+      this.$router.push({
+        path: '/details',
+        query: {
+          pos: this.bscroll.y
+        }
+      })
     }
   },
 

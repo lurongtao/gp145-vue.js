@@ -1,14 +1,31 @@
 <template>
   <div class="box">
+    <!-- <div @click="$router.push('/details/4')">ccc</div> -->
     <div>ccc</div>
-    <div>bbb</div>
+    <div @click="handleClick">bbb</div>
     <div>aaa</div>
   </div>
 </template>
 
 <script>
 export default {
-  
+  mounted() {
+    // console.log(0)
+  },
+
+  methods: {
+    handleClick() {
+      // let pos = document.body.scrollTop || document.documentElement.scrollTop
+      let pos = this.$route.query.pos
+      this.$router.push({path: '/index/movies/intheaters', query: {pos}})
+    }
+  },
+
+  // watch: {
+  //   $route(to, from) {
+  //     console.log(from)
+  //   }
+  // },
 }
 </script>
 
@@ -17,8 +34,8 @@ export default {
   >div:first-child
     height .5rem
   >div:nth-child(2)
-    position sticky
-    top 0
+    // position sticky
+    // top 0
     height .5rem
     background yellowgreen
   >div:last-child

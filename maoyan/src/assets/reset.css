@@ -7,7 +7,7 @@
 
 html,
 body {
-  overflow: hidden;
+  overflow: scroll;
   height: 100%; }
 
 ::-webkit-scrollbar {

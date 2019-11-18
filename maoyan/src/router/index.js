@@ -10,6 +10,7 @@ import Comingsoon from 'pages/index/movies/comingsoon/Comingsoon'
 import Theaters from 'pages/index/Theaters'
 import Profile from 'pages/index/Profile'
 import Details from 'pages/details/Details'
+import Test from 'pages/details/Test'
 
 Vue.use(VueRouter)
 
@@ -61,6 +62,12 @@ const routes = [
     path: '/details',
     name: 'details',
     component: Details
+  },
+
+  {
+    path: '/test',
+    name: 'test',
+    component: Test
   }
 ]
 
@@ -72,7 +79,7 @@ const router = new VueRouter({
     // return 期望滚动到哪个的位置
     return {
       x: 0,
-      y: 100
+      y: ~~to.query.pos
     }
     // return false
   }
