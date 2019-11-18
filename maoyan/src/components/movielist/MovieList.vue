@@ -59,12 +59,14 @@ export default {
           ...result.coming
         ]
       }
+      this.$store.commit('setData', this.intheatersList)
     } else {
       this.tempList = [
         ...this.tempList,
         ...result.coming
       ]
       this.comingsoonMap = _.groupBy(this.tempList, 'comingTitle')
+      this.$store.commit('setData', this.comingsoonMap)
     }
   },
 
@@ -140,6 +142,8 @@ export default {
 
     await this.$nextTick()
     this.bScroll.scrollTo(0, this.$route.query.pos)
+
+
   }
 }
 

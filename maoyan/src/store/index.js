@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isSticky: false
+    isSticky: false,
+    movieList: []
   },
   mutations: {
     setSticky(state, payload) {
       state.isSticky = payload
+    },
+    setData(state, data) {
+      state.movieList = data
     }
   },
   actions: {
