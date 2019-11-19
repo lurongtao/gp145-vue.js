@@ -1,15 +1,15 @@
 <template>
   <section id="city-list" class="city-list-container" style="display: block;">
-    <div>
+    <van-index-bar :index-list="indexList">
       <section>
-        <div id="location" ref="location" class="city-title">定位城市</div>
+        <van-index-anchor index="定位" class="city-title">定位城市</van-index-anchor>
         <div class="city-list city-list-inline clearfix">
           <div class="location-city">定位失败，请点击重试</div>
         </div>
       </section>
 
       <section class="history-city-list">
-        <div id="history" ref="history" class="city-title">最近访问城市</div>
+        <van-index-anchor index="最近" class="city-title">最近访问城市</van-index-anchor>
         <div class="city-list city-list-inline clearfix">
           <div class="city-item" data-nm="深圳" data-id="30">深圳</div>
 
@@ -20,7 +20,7 @@
       </section>
 
       <section>
-        <div id="hot" ref="hot" class="city-title">热门城市</div>
+        <van-index-anchor index="热门" class="city-title">热门城市</van-index-anchor>
         <div class="city-list city-list-inline clearfix">
           <div class="city-item" data-nm="上海" data-id="10">上海</div>
 
@@ -48,7 +48,7 @@
 
       <section>
         <div v-for="(city, key) in cityList" :key="key">
-          <div :id="key" :ref="key" class="city-title city-title-letter">{{key}}</div>
+          <van-index-anchor :index="key" class="city-title city-title-letter">{{key}}</van-index-anchor>
           <div class="city-list city-list-block clearfix">
             <div class="city-item" v-for="c in city" :key="c.id">
               {{c.nm}}
@@ -56,31 +56,14 @@
           </div>
         </div>
       </section>
-    </div>
-    <section class="nav">
-      <div class="nav-item" @click="scrollToElement('location')">
-        定位
-      </div>
-      <div class="nav-item" @click="scrollToElement('history')">
-        最近
-      </div>
-      <div class="nav-item" @click="scrollToElement('hot')">
-        热门
-      </div>
-      <div class="nav-letter nav-item" @click="scrollToElement(item)" v-for="item in indexList" :key="item">
-        {{item}}
-      </div>
-    </section>
+    </van-index-bar>
   </section>
 </template>
 
 <script>
-// import Vue from 'vue';
-// import { IndexBar, IndexAnchor } from 'vant'
-// Vue.use(IndexBar).use(IndexAnchor)
-
-import BScroll from 'better-scroll'
-
+import Vue from 'vue';
+import { IndexBar, IndexAnchor } from 'vant'
+Vue.use(IndexBar).use(IndexAnchor)
 import { get } from 'utils/http'
 import _ from 'lodash'
 
@@ -92,21 +75,19 @@ export default {
   },
 
   created() {
-    this.bScroll = null
+    this.indexListInit = [
+      '定位',
+      '最近',
+      '热门'
+    ]
   },
 
   computed: {
     indexList() {
       return [
+        ...this.indexListInit,
         ...Object.keys(this.cityList).sort()
       ]
-    }
-  },
-
-  methods: {
-    scrollToElement(id) {
-      let target = this.$refs[id][0]
-      this.bScroll.scrollToElement(target)
     }
   },
 
@@ -122,11 +103,6 @@ export default {
       return obj
     }, {})
     this.cityList = reducedResult
-
-    await this.$nextTick()
-    this.bScroll = new BScroll('#city-list', {
-      click: true
-    })
   },
 }
 </script>

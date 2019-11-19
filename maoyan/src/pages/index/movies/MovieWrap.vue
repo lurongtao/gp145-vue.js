@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang='stylus'>
-section
+section.singleton
   position absolute !important
   height 100%
   .main-block
