@@ -1,16 +1,23 @@
 <template>
-  <div @click="handleClick">
+  <div>
     test
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    handleClick() {
-      this.$router.push('/details?pos=' + this.$route.query.pos)
+  data() {
+    return {
+      title: 'hello'
     }
-  }
+  },
+
+  mounted() {
+    console.log(this.title)
+    setTimeout(() => {
+      this.title = 'world'
+    }, 10000)
+  },
 }
 </script>
 

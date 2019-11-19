@@ -11,6 +11,7 @@ import Theaters from 'pages/index/Theaters'
 import Profile from 'pages/index/Profile'
 import Details from 'pages/details/Details'
 import City from 'pages/city/City'
+import Test from 'pages/details/Test'
 
 Vue.use(VueRouter)
 
