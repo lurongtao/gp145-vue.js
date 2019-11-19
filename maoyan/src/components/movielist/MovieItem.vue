@@ -46,10 +46,7 @@ export default {
   methods: {
     handleClick() {
       this.$router.push({
-        path: '/details',
-        query: {
-          pos: this.bscroll.y
-        }
+        path: '/details'
       })
     }
   },

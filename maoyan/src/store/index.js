@@ -3,21 +3,23 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import scroll from './scroll'
+
 export default new Vuex.Store({
+  modules: {
+    scroll
+  },
+
   state: {
     isSticky: false,
-    movieList: []
   },
+
   mutations: {
     setSticky(state, payload) {
       state.isSticky = payload
-    },
-    setData(state, data) {
-      state.movieList = data
     }
   },
+
   actions: {
-  },
-  modules: {
   }
 })

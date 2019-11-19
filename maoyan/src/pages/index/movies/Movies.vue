@@ -3,7 +3,7 @@
     <header>猫眼电影</header>
     <Ad v-if="!$store.state.isSticky"></Ad>
     <nav>
-      <div>
+      <div @click="handleClick">
         <span>北京</span>
         <i class="yo-ico">&#xf033;</i>
       </div>
@@ -38,6 +38,12 @@ export default {
     return {
       enterClassName: '',
       leaveClassName: ''
+    }
+  },
+
+  methods: {
+    handleClick() {
+      this.$router.push('/city')
     }
   },
 

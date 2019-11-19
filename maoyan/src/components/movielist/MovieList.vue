@@ -11,7 +11,6 @@
           :key="movie.id"
           :movie="movie"
           :index="index"
-          :bscroll="bScroll"
         ></MovieItem>
       </div>
     </div>
@@ -21,7 +20,6 @@
         :key="movie.id"
         :movie="movie"
         :index="index"
-        :bscroll="bScroll"
       ></MovieItem>
     </div>
     <van-loading v-if="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)" type="spinner" />
@@ -44,8 +42,7 @@ export default {
     return {
       intheatersList: [],
       comingsoonMap: {},
-      tempList: [],
-      bScroll: null
+      tempList: []
     }
   },
 
@@ -59,14 +56,14 @@ export default {
           ...result.coming
         ]
       }
-      this.$store.commit('setData', this.intheatersList)
+      // this.$store.commit('setData', this.intheatersList)
     } else {
       this.tempList = [
         ...this.tempList,
         ...result.coming
       ]
       this.comingsoonMap = _.groupBy(this.tempList, 'comingTitle')
-      this.$store.commit('setData', this.comingsoonMap)
+      // this.$store.commit('setData', this.comingsoonMap)
     }
   },
 
@@ -86,30 +83,52 @@ export default {
       offset = 10
     }
 
+    let page = this.$store.state.scroll.page
+
+    let loadedMoviesCount = page * 10 + offset
+
     let result = await get({
       url,
       params: {
         token: '',
         ci: 1,
-        limit: 10
+        limit: loadedMoviesCount
       }
     })
 
     this.$options.genData.call(this, result)
 
-    let movieIds = _.chunk(result.movieIds.slice(offset), 10)
+    if (this.type === 'intheaters' && page > 0) {
+      let secondResult = await get({
+        url: '/ajax/moreComingList',
+        params: {
+          ci: 1,
+          token: '',
+          movieIds: result.movieIds.slice(12, page * 10 + 12).join(',')
+        }
+      })
+      console.log(result.movieIds.slice(12, page * 10 + 12).join(','))
+      // console.log(secondResult)
+      this.$options.genData.call(this, secondResult)
+    }
+
+    let movieIds = _.chunk(result.movieIds.slice(loadedMoviesCount), 10)
 
     // 由于动画播放的原因，不允许给两个的容器定义better-scroll
     let scrollWrap = '.tab-content.' + this.type
-    this.bScroll = new BScroll(scrollWrap, {
+    let bScroll = new BScroll(scrollWrap, {
       pullUpLoad: true,
       click: true,
       probeType: 2
     })
 
-    let page = 0
+    bScroll.on('scrollEnd', () => {
+      this.$store.commit('scroll/setPosition', {
+        position: bScroll.y
+      })
+    })
 
-    this.bScroll.on('pullingUp', async() => {
+    bScroll.on('pullingUp', async() => {
       if (page < movieIds.length) {
         let result = await get({
           url: '/ajax/moreComingList',
@@ -123,9 +142,14 @@ export default {
         this.$options.genData.call(this, result)
 
         await this.$nextTick()
-        this.bScroll.refresh()
+        bScroll.refresh()
         
         page++
+
+        console.log(page)
+        this.$store.commit('scroll/setPage', {
+          page
+        })
       } else {
         Toast({
           message: '到底了~',
@@ -133,17 +157,17 @@ export default {
           duration: 1000
         })
       }
-      this.bScroll.finishPullUp()
+      bScroll.finishPullUp()
     })
 
-    this.bScroll.on('scroll', () => {
-      this.$store.commit('setSticky', this.bScroll.y < -50)
+    bScroll.on('scroll', () => {
+      this.$store.commit('setSticky', bScroll.y < -50)
     })
 
     await this.$nextTick()
-    this.bScroll.scrollTo(0, this.$route.query.pos)
-
-
+    // console.log(this.$store.state.scroll.position)
+    // console.log(this.$store.state.scroll.page)
+    bScroll.scrollTo(0, this.$store.state.scroll.position)
   }
 }
 

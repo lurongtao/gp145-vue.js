@@ -10,7 +10,7 @@ import Comingsoon from 'pages/index/movies/comingsoon/Comingsoon'
 import Theaters from 'pages/index/Theaters'
 import Profile from 'pages/index/Profile'
 import Details from 'pages/details/Details'
-import Test from 'pages/details/Test'
+import City from 'pages/city/City'
 
 Vue.use(VueRouter)
 
@@ -65,24 +65,16 @@ const routes = [
   },
 
   {
-    path: '/test',
-    name: 'test',
-    component: Test
+    path: '/city',
+    name: 'city',
+    component: City
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    // return 期望滚动到哪个的位置
-    return {
-      x: 0,
-      y: ~~to.query.pos
-    }
-    // return false
-  }
+  routes
 })
 
 export default router

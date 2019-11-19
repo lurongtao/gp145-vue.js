@@ -16,8 +16,8 @@ export default {
   methods: {
     handleClick() {
       // let pos = document.body.scrollTop || document.documentElement.scrollTop
-      let pos = this.$route.query.pos
-      this.$router.push({path: '/index/movies/intheaters', query: {pos}})
+      // let pos = this.$route.query.pos
+      this.$router.back()
     }
   },
 
