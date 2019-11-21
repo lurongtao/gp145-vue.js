@@ -4,7 +4,7 @@
       <section>
         <div id="location" ref="location" class="city-title">定位城市</div>
         <div class="city-list city-list-inline clearfix">
-          <div class="location-city">定位失败，请点击重试</div>
+          <div class="location-city">{{position || '定位失败，请点击重试'}}</div>
         </div>
       </section>
 
@@ -82,14 +82,15 @@ export default {
   data() {
     return {
       cityList: {},
-      hotCities: []
+      hotCities: [],
+      position: ''
     }
   },
 
   created() {
-    this.bScroll = null,
+    this.bScroll = null
     this.alphaATop = 0
-    this.alphaAHeight = 0,
+    this.alphaAHeight = 0
     this.alphas = []
     this.visitedCities = store.get('visitedCities')
   },
@@ -116,9 +117,11 @@ export default {
       let clientY = e.touches[0].clientY
       let height = clientY - this.alphaATop
       let index = Math.floor(height / this.alphaAHeight)
-      
-      let target = this.$refs[this.alphas[index]][0]
-      this.bScroll.scrollToElement(target)
+
+      if (index > -1 && index < this.alphas.length) {
+        let target = this.$refs[this.alphas[index]][0]
+        this.bScroll.scrollToElement(target)
+      }
     }, 100),
 
     handleTouchEnd() {
@@ -149,6 +152,7 @@ export default {
   },
 
   async mounted() {
+    let that = this
     let result = await get({
       url: '/dianying/cities.json'
     })
@@ -171,6 +175,39 @@ export default {
     let { top, height } = this.$refs['A'][1].getBoundingClientRect()
     this.alphaATop = top
     this.alphaAHeight = height
+
+    // 地理定位
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        that.position="Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      that.position="Latitude: " + position.coords.latitude +
+      "<br />Longitude: " + position.coords.longitude;
+    }
+
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          that.position = "User denied the request for Geolocation."
+          break;
+        case error.POSITION_UNAVAILABLE:
+          that.position = "Location information is unavailable."
+          break;
+        case error.TIMEOUT:
+          that.position = "The request to get user location timed out."
+          break;
+        case error.UNKNOWN_ERROR:
+          that.position = "An unknown error occurred."
+          break;
+      }
+    }
+
+    getLocation()
   },
 }
 

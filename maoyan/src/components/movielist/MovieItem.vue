@@ -40,7 +40,8 @@ export default {
       type: Object
     },
     index: Number,
-    bscroll: Object
+    bscroll: Object,
+    showSkyeleton: Boolean
   },
 
   methods: {

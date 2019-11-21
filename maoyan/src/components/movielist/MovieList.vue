@@ -11,6 +11,7 @@
           :key="movie.id"
           :movie="movie"
           :index="index"
+          :showSkeleton="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)"
         ></MovieItem>
       </div>
     </div>
@@ -20,9 +21,18 @@
         :key="movie.id"
         :movie="movie"
         :index="index"
+        :showSkeleton="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)"
       ></MovieItem>
     </div>
-    <van-loading v-if="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)" type="spinner" />
+    <van-skeleton
+      title
+      avatar
+      v-for="i in 10"
+      :key="i"
+      :row="3"
+      :loading="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)"
+    ></van-skeleton>
+    <!-- <van-loading v-if="(type==='comingsoon' && tempList.length === 0) || (type==='intheaters' && intheatersList.length === 0)" type="spinner" /> -->
   </div>
 </template>
 
@@ -33,8 +43,8 @@ import _ from 'lodash'
 import { get } from 'utils/http'
 import MovieItem from './MovieItem'
 
-import { Loading, Toast } from 'vant'
-Vue.use(Loading).use(Toast)
+import { Loading, Toast, Skeleton } from 'vant'
+Vue.use(Loading).use(Toast).use(Skeleton)
 
 export default {
   props: ['type'],
