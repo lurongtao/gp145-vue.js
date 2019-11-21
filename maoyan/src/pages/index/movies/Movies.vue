@@ -4,7 +4,7 @@
     <Ad v-if="!$store.state.isSticky"></Ad>
     <nav>
       <div @click="handleClick">
-        <span>北京</span>
+        <span>{{$store.state.cities.nm}}</span>
         <i class="yo-ico">&#xf033;</i>
       </div>
       <div>
@@ -69,6 +69,7 @@ export default {
 
 <style lang='stylus' scoped>
 @import '~assets/stylus/border.styl';
+@import '~assets/stylus/ellipsis.styl';
 
 .movie-wrap {
   display: flex;
@@ -96,6 +97,10 @@ export default {
       display: flex;
       align-items: center;
       color: #666;
+      overflow hidden
+      span {
+        ellipsis()
+      }
     }
 
     >div:nth-child(2) {

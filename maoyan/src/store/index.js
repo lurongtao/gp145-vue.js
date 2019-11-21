@@ -4,10 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import scroll from './scroll'
+import cities from './cities'
 
 export default new Vuex.Store({
   modules: {
-    scroll
+    scroll,
+    cities
   },
 
   state: {

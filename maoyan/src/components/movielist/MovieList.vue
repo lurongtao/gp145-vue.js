@@ -91,7 +91,7 @@ export default {
       url,
       params: {
         token: '',
-        ci: 1,
+        ci: this.$store.state.cities.cityid,
         limit: loadedMoviesCount
       }
     })
